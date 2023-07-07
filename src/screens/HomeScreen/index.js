@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity, FlatList} from 'react-native';
 import styles from './styles';
 import {DrawerActions} from '@react-navigation/native';
 import assets from '../../utils/assets';
+import {useDispatch, useSelector} from 'react-redux';
+
 const Home = props => {
   return (
     <View style={styles.container}>
@@ -26,7 +28,11 @@ const Home = props => {
           data={assets.data}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
-            <TouchableOpacity style={styles.flview}>
+            <TouchableOpacity
+              style={styles.flview}
+              onPress={() => {
+                props.navigation.navigate(item.src);
+              }}>
               <View style={styles.flimgview}>
                 <Image source={item.img} style={styles.flimg} />
               </View>

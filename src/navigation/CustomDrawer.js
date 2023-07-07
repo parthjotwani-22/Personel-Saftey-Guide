@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, Touchable, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {color} from 'react-native-reanimated';
 import colors from '../utils/colors';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const CustomDrawer = props => {
+  var logout = async () => {
+    await AsyncStorage.removeItem('token');
+    props.navigation.navigate('Login');
+  };
   return (
     <View style={{flex: 1}}>
       <View
@@ -45,6 +49,11 @@ const CustomDrawer = props => {
         <TouchableOpacity style={styles.view}>
           <Text style={{fontSize: 20, fontWeight: '500', color: colors.black}}>
             FAQs
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.view} onPress={logout}>
+          <Text style={{fontSize: 20, fontWeight: '500', color: colors.black}}>
+            Logout
           </Text>
         </TouchableOpacity>
       </View>

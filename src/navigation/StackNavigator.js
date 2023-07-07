@@ -42,6 +42,21 @@ const StackNavigator = props => {
           component={screens.MapScreen}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="SOS"
+          component={screens.Soscreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EMERGENCY"
+          component={screens.Emergency}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TIPS"
+          component={screens.Tips}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -3,7 +3,11 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import assets from '../../utils/assets';
 import colors from '../../utils/colors';
 import styles from './styles';
+import {useDispatch, useSelector} from 'react-redux';
 const Profile = props => {
+  const userData = useSelector(value => value.UserReducer);
+  const data = userData.userData;
+  console.log(userData);
   return (
     <View style={styles.container}>
       <View style={styles.head}>
@@ -21,19 +25,19 @@ const Profile = props => {
         </View>
         <View style={styles.namesec}>
           <Text style={styles.text}>Hello,</Text>
-          <Text style={styles.text}>User123</Text>
+          <Text style={styles.text}>{data.uname}</Text>
         </View>
       </View>
       <View style={styles.body}>
         <View style={styles.maincontainer}>
           <View style={styles.detailsec}>
-            <Text style={styles.detail}>Name : XYZZasdasd</Text>
+            <Text style={styles.detail}>Name : {data.uname}</Text>
           </View>
           <View style={styles.detailsec}>
-            <Text style={styles.detail}>Phone : 12312553999</Text>
+            <Text style={styles.detail}>Phone : {data.phone}</Text>
           </View>
           <View style={styles.detailsec}>
-            <Text style={styles.detail}>Email : xyz@gmail.com</Text>
+            <Text style={styles.detail}>Email : {data.email}</Text>
           </View>
           <View style={styles.detailsec}>
             <Text style={styles.detail}>
@@ -51,6 +55,13 @@ const Profile = props => {
         </View>
       </View>
     </View>
+    // <MapViewDirections
+    //       origin={cordinates[0]}
+    //       destination={cordinates[1]}
+    //       apikey={'AIzaSyBJDeoXRmaYeS_IKyv9ceTsITKlVIowhYo'} // insert your API Key here
+    //       strokeWidth={4}
+    //       strokeColor="#111111"
+    //     />
   );
 };
 

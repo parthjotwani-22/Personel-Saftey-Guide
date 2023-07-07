@@ -13,44 +13,27 @@ import styles from './styles';
 import assets from '../../utils/assets';
 import colors from '../../utils/colors';
 import {TextInput} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 //import twilio from 'twilio';
-import {userFound} from '../../services/redux/UserDescription/action';
-const Login = props => {
+const Signup = props => {
   const [details, setdetails] = useState({
-    uname: null,
-    phone: null,
     email: null,
     password: null,
   });
-  const dispatch = useDispatch();
-
-  const senddata = () => {
-    fetch('http://192.168.43.51:3000/user', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(details),
-    })
-      .then(
-        res =>
-          //message();
-          res.json(),
-        dispatch(userFound(details)),
-      )
-      .then(async data => {
-        console.log(data.token);
-        try {
-          await AsyncStorage.setItem('token', data.token);
-        } catch (e) {
-          console.log(e);
-        }
-        console.log(AsyncStorage.getItem('token'));
-      })
-      .catch(e => console.log(e));
-  };
-  //Not used
-
+  // const senddata = () => {
+  //   fetch('http://192.168.43.51:3000/user', {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(details),
+  //   })
+  //     .then(res => {
+  //       message();
+  //       res.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data);
+  //     })
+  //     .catch(e => console.log(e));
+  // };
   //const accountSid = 'ACe831e63bc8ac2f83acd179be3d732086';
   //const authToken = 'efefd86eb0dafa345a8d126614d11387';
   //const client = require('twilio')(accountSid, authToken);
@@ -64,20 +47,19 @@ const Login = props => {
   //     .then(message => console.log(message.sid))
   //     .done();
   // };
-
-  const message = () => {
-    fetch('http://192.168.43.51:3000/message', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      //   body: JSON.stringify(details),
-    }).then(res => console.log('Data is sent'));
-    //.then(res => res.json())
-    // .then(data => {
-    //   console.log(data);
-    //   //message();
-    // })
-    // .catch(e => console.log(e));
-  };
+  // const message = () => {
+  //   fetch('http://192.168.43.51:3000/message', {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     //   body: JSON.stringify(details),
+  //   }).then(res => console.log('Data is sent'));
+  //   //.then(res => res.json())
+  //   // .then(data => {
+  //   //   console.log(data);
+  //   //   //message();
+  //   // })
+  //   // .catch(e => console.log(e));
+  // };
   return (
     <View style={styles.container}>
       <View
@@ -112,23 +94,6 @@ const Login = props => {
                 fontWeight: '600',
                 color: colors.purple,
               }}>
-              Name :
-            </Text>
-            <TextInput
-              onChangeText={text => {
-                setdetails({...details, uname: text});
-              }}
-              style={{
-                height: '100%',
-              }}></TextInput>
-          </View>
-          <View style={styles.textinpview}>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: '600',
-                color: colors.purple,
-              }}>
               E-mail :
             </Text>
             <TextInput
@@ -139,23 +104,7 @@ const Login = props => {
                 height: '100%',
               }}></TextInput>
           </View>
-          <View style={styles.textinpview}>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: '600',
-                color: colors.purple,
-              }}>
-              Phone :
-            </Text>
-            <TextInput
-              onChangeText={text => {
-                setdetails({...details, phone: text});
-              }}
-              style={{
-                height: '100%',
-              }}></TextInput>
-          </View>
+
           <View style={styles.textinpview}>
             <Text
               style={{
@@ -175,8 +124,8 @@ const Login = props => {
           </View>
           <TouchableOpacity
             onPress={() => {
-              senddata();
-              props.navigation.navigate('HomeTab');
+              //senddata();
+              //props.navigation.navigate('HomeTab');
             }}
             style={{
               backgroundColor: colors.purple,
@@ -190,7 +139,7 @@ const Login = props => {
             }}>
             <Text
               style={{color: colors.white, fontSize: 20, fontWeight: 'bold'}}>
-              SIGN UP
+              LOG IN
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -199,4 +148,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default Signup;
